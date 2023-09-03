@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MirrorMirror</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script type="text/javascript">
+        var socket = io.connect('http://' + document.domain + ':' + location.port);
+
+        socket.on('attention', function(data) {
+            document.getElementById("mainframe").src = data.url;
+        });
+
+        socket.on('normal', function(data) {
+            document.getElementById("mainframe").src = data.content;
+        });
+    </script>
+</head>
+<body>
+    <iframe id="mainframe"  style="
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    width: 100%;
+    border: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    z-index: 999999;
+    height: 100%;
+  "></iframe>
+</body>
+</html>
